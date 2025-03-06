@@ -29,8 +29,15 @@ ON customers.CustomerID = orders.CustomerID;
 /* 4. lista con cada tipo de producto que se han vendido, sus categorías, nombre de la categoría y 
 el nombre del producto, y el total de dinero por el que se ha vendido cada tipo de producto 
 (teniendo en cuenta los descuentos). */
-SELECT products.CategoryID, categories.CategoryName, products.ProductName, order_details.quantity*order_details.UnitPrice AS total_productos
+SELECT categories.CategoryName, products.CategoryID, products.ProductName, orderdetails.quantity*orderdetails.UnitPrice AS €total_productos
 FROM products
 INNER JOIN categories 
 ON products.CategoryID = categories.CategoryID
-INNER JOIN order_details ON order_details.ProductID = products.ProductID
+INNER JOIN orderdetails ON orderdetails.ProductID = products.ProductID;
+
+-- 5.obtener una consulta SQL que nos devuelva el nombre de todas las empresas cliente, los ID de sus
+-- pedidos y las fechas.
+SELECT OrderID, CompanyName, OrderDate
+FROM customers
+INNER JOIN orders
+ON customers.CustomerID = orders.CustomerID;
